@@ -349,7 +349,7 @@ export class NextFloorCard extends LitElement {
       .clock=${c?.clock && c.clock !== "none" ? c.clock : null}
       .lockButton=${c?.lock_button !== false}
       .walkButton=${c?.walk_button !== false}
-      .navControls=${c?.nav_controls !== false}
+      .navControls=${c?.nav_controls === true}
       .navStyle=${c?.nav_style === "cube" ? "cube" : "buttons"}
       .travelButton=${c?.time_travel !== false}
       .accent=${c?.accent ?? null}
@@ -403,7 +403,7 @@ export class NextFloorCard extends LitElement {
 
   /** The room panel starts below the navigation block, which stays at the top right. */
   private navPanelTop(): string {
-    return this._config?.nav_controls === false ? "" : `--nf-nav-top: ${this._config?.nav_style === "cube" ? 220 : 280}px`;
+    return this._config?.nav_controls !== true ? "" : `--nf-nav-top: ${this._config?.nav_style === "cube" ? 220 : 280}px`;
   }
 
   private renderRoomPanel(): TemplateResult {

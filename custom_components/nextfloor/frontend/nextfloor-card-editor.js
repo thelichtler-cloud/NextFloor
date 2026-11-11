@@ -123,8 +123,8 @@ var m={cs:"6f8031965f91",da:"0fe66a82bf2a",es:"b20874014798",fi:"9a17bc084f56",f
     ${f(e,e.value.central,"card_central","card_central_hint",s=>e.set("central",s?void 0:!1))}
     ${f(e,e.value.lock_button!==!1,"card_lock_button",void 0,s=>e.set("lock_button",s?void 0:!1))}
     ${f(e,e.value.walk_button!==!1,"card_walk_button",void 0,s=>e.set("walk_button",s?void 0:!1))}
-    ${f(e,e.value.nav_controls!==!1,"card_nav_controls",void 0,s=>e.set("nav_controls",s?void 0:!1))}
-    ${e.value.nav_controls!==!1?g(e,"nav_style","card_nav_style",[["buttons","nav_style_buttons"],["cube","nav_style_cube"]],e.value.nav_style??"buttons"):d}
+    ${f(e,e.value.nav_controls===!0,"card_nav_controls",void 0,s=>e.set("nav_controls",s?!0:void 0))}
+    ${e.value.nav_controls===!0?g(e,"nav_style","card_nav_style",[["buttons","nav_style_buttons"],["cube","nav_style_cube"]],e.value.nav_style??"buttons"):d}
     ${f(e,e.value.time_travel!==!1,"card_travel_button",void 0,s=>e.set("time_travel",s?void 0:!1))}
     ${se(e,"marker_names","card_marker_names","card_marker_names_hint")} ${se(e,"controls_hidden","card_controls_hidden","card_controls_hidden_hint")}
     ${le(e,"controls_hide_after","card_controls_hide_after",a)}

@@ -89,7 +89,7 @@ Die eigenen Optionen der Karte gewinnen. Eine Änderung im Editor erreicht jede 
 | `start_view` | die des Plans | eine eigene Startansicht dieser Karte |
 | `lock_button` | `true` | der 🔒-Knopf, der die Kamera sperrt |
 | `walk_button` | `true` | der 🚶-Knopf zum Gehen durchs Haus |
-| `nav_controls` | `true` | die Navigation oben rechts: Zoom, Drehen, Neigen, Kompass, Ansicht zurücksetzen |
+| `nav_controls` | `false` | die Navigation oben rechts: Zoom, Drehen, Neigen, Kompass, Ansicht zurücksetzen |
 | `nav_style` | `buttons` | `buttons` (Tasten mit Kompass) oder `cube` (anklickbarer Ansichtswürfel) |
 | `time_travel` | `true` | der ⏪-Knopf zum Abspielen des letzten Tages oder der letzten Woche |
 | `fullscreen_button` | `false` | ein Knopf für Vollbild |
