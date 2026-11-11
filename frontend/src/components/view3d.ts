@@ -2364,7 +2364,9 @@ export class NfView3d extends LitElement {
         </g>
       </svg>
     </button>`;
-    if (this.navStyle === "cube" && !this._walking) {
+    // with a room selected its info card takes the right side: keep only the compass
+    const compact = this._walking || !!this.roomId;
+    if (this.navStyle === "cube" && !compact) {
       return html`<div class="nf-nav nf-nav-cubed ${this.clock === "top_right" ? "nf-nav-clock" : ""}" role="group" aria-label=${t("nav_group")}>
         ${this.renderCube()} ${step("nav_zoom_in", svg`<path d="M12 5v14M5 12h14" />`, { zoom: 0.8 })} ${step("nav_zoom_out", svg`<path d="M5 12h14" />`, { zoom: 1.25 })}
         <button class="nf-nav-btn nf-nav-reset" title=${t("nav_reset")} aria-label=${t("nav_reset")} @click=${() => this.viewer?.resetCamera()}>
@@ -2372,7 +2374,7 @@ export class NfView3d extends LitElement {
         </button>
       </div>`;
     }
-    if (this._walking) return html`<div class="nf-nav nf-nav-walk ${this.clock === "top_right" ? "nf-nav-clock" : ""}">${compass}</div>`;
+    if (compact) return html`<div class="nf-nav nf-nav-walk ${this.clock === "top_right" ? "nf-nav-clock" : ""}">${compass}</div>`;
     const STEP = Math.PI / 12;
     return html`<div class="nf-nav ${this.clock === "top_right" ? "nf-nav-clock" : ""}" role="group" aria-label=${t("nav_group")}>
       ${compass}
@@ -3005,7 +3007,7 @@ export class NfView3d extends LitElement {
     const stage = stageFor(this.theme, this.filledOwnLook);
     const style = `--nf-sky:${mix(stage.night[0], stage.day[0])};--nf-ground:${mix(stage.night[1], stage.day[1])}` + backdropStyle(this.building?.settings.backdrop);
     return html`<div
-      class="nf-stage ${this.roomLabels ? "" : "nf-no-room-names"} ${this._low ? "nf-low" : ""} ${this.panelOpen ? "nf-panel-open" : ""} ${this._alerts.length ? "nf-has-alerts" : ""} ${this.navShown() ? (this._walking ? "nf-nav-walking" : this.navStyle === "cube" ? "nf-nav-on-cube" : "nf-nav-on") : ""} ${this._narrowStage ? "nf-narrow" : ""}"
+      class="nf-stage ${this.roomLabels ? "" : "nf-no-room-names"} ${this._low ? "nf-low" : ""} ${this.panelOpen ? "nf-panel-open" : ""} ${this._alerts.length ? "nf-has-alerts" : ""} ${this.navShown() ? (this._walking || this.roomId ? "nf-nav-walking" : this.navStyle === "cube" ? "nf-nav-on-cube" : "nf-nav-on") : ""} ${this._narrowStage ? "nf-narrow" : ""}"
       style=${style}
     >
       ${this._error ? html`<p class="nf-error">${this._error}</p>` : nothing} ${this.renderTopLeft()} ${renderLhCards(this.hass, this.roomId || this.panelOpen ? [] : this._liveCards, (domain, service, entity, data) => this.hass?.callService(domain, service, { entity_id: entity, ...data }), { folded: this._houseFolded, toggle: () => this.toggleHouseFold() })} ${this.clean ? nothing : this.renderLegend()} ${this.renderMapCredit()}

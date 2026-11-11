@@ -1626,17 +1626,17 @@ A plugin runs with the same rights as NextFloor in your browser. The file has be
         >
           ${o(i[s])}
         </button>`})}
-    </div>`}navTimer;navPress(e,t){if(e.button!==0)return;e.currentTarget.setPointerCapture?.(e.pointerId),this.navRelease(),this.viewer?.nudgeCamera(t);let o=i=>{this.navTimer=setTimeout(()=>{this.viewer?.nudgeCamera(t),o(160)},i)};o(380)}navRelease(){clearTimeout(this.navTimer),this.navTimer=void 0}navKey(e,t){e.detail===0&&t()}navShown(){return this.navControls&&!!this.hass&&!this.clean&&!this._locked}renderNav(){if(!this.navShown())return g;let e=a=>A(this.hass,a),t=a=>j`<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${a}</svg>`,n=(a,l,u)=>f`<button
+    </div>`}navTimer;navPress(e,t){if(e.button!==0)return;e.currentTarget.setPointerCapture?.(e.pointerId),this.navRelease(),this.viewer?.nudgeCamera(t);let o=i=>{this.navTimer=setTimeout(()=>{this.viewer?.nudgeCamera(t),o(160)},i)};o(380)}navRelease(){clearTimeout(this.navTimer),this.navTimer=void 0}navKey(e,t){e.detail===0&&t()}navShown(){return this.navControls&&!!this.hass&&!this.clean&&!this._locked}renderNav(){if(!this.navShown())return g;let e=l=>A(this.hass,l),t=l=>j`<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${l}</svg>`,n=(l,u,c)=>f`<button
       class="nf-nav-btn"
-      title=${e(a)}
-      aria-label=${e(a)}
-      @pointerdown=${c=>this.navPress(c,u)}
+      title=${e(l)}
+      aria-label=${e(l)}
+      @pointerdown=${d=>this.navPress(d,c)}
       @pointerup=${()=>this.navRelease()}
       @pointercancel=${()=>this.navRelease()}
       @lostpointercapture=${()=>this.navRelease()}
-      @click=${c=>this.navKey(c,()=>this.viewer?.nudgeCamera(u))}
+      @click=${d=>this.navKey(d,()=>this.viewer?.nudgeCamera(c))}
     >
-      ${t(l)}
+      ${t(u)}
     </button>`,o=e("nav_north"),i=f`<button class="nf-nav-btn nf-nav-compass" title=${o} aria-label=${o} ?disabled=${this._walking} @click=${()=>this.viewer?.faceNorth()}>
       <svg viewBox="-12 -12 24 24" width="34" height="34" aria-hidden="true">
         <g class="nf-nav-needle" style="transform:rotate(${this._needle}rad)">
@@ -1644,15 +1644,15 @@ A plugin runs with the same rights as NextFloor in your browser. The file has be
           <path d="M0 10L3.6 0H-3.6z" fill="currentColor" opacity="0.55" />
         </g>
       </svg>
-    </button>`;if(this.navStyle==="cube"&&!this._walking)return f`<div class="nf-nav nf-nav-cubed ${this.clock==="top_right"?"nf-nav-clock":""}" role="group" aria-label=${e("nav_group")}>
+    </button>`,s=this._walking||!!this.roomId;if(this.navStyle==="cube"&&!s)return f`<div class="nf-nav nf-nav-cubed ${this.clock==="top_right"?"nf-nav-clock":""}" role="group" aria-label=${e("nav_group")}>
         ${this.renderCube()} ${n("nav_zoom_in",j`<path d="M12 5v14M5 12h14" />`,{zoom:.8})} ${n("nav_zoom_out",j`<path d="M5 12h14" />`,{zoom:1.25})}
         <button class="nf-nav-btn nf-nav-reset" title=${e("nav_reset")} aria-label=${e("nav_reset")} @click=${()=>this.viewer?.resetCamera()}>
           ${t(j`<path d="M3 11l9-8 9 8M5 10v10h14V10" />`)}
         </button>
-      </div>`;if(this._walking)return f`<div class="nf-nav nf-nav-walk ${this.clock==="top_right"?"nf-nav-clock":""}">${i}</div>`;let s=Math.PI/12;return f`<div class="nf-nav ${this.clock==="top_right"?"nf-nav-clock":""}" role="group" aria-label=${e("nav_group")}>
+      </div>`;if(s)return f`<div class="nf-nav nf-nav-walk ${this.clock==="top_right"?"nf-nav-clock":""}">${i}</div>`;let a=Math.PI/12;return f`<div class="nf-nav ${this.clock==="top_right"?"nf-nav-clock":""}" role="group" aria-label=${e("nav_group")}>
       ${i}
       ${n("nav_zoom_in",j`<path d="M12 5v14M5 12h14" />`,{zoom:.8})} ${n("nav_zoom_out",j`<path d="M5 12h14" />`,{zoom:1.25})}
-      ${n("nav_turn_left",j`<path d="M3 12a9 9 0 1 0 3-6.7M3 4v5h5" />`,{turn:-s})} ${n("nav_turn_right",j`<path d="M21 12a9 9 0 1 1-3-6.7M21 4v5h-5" />`,{turn:s})}
+      ${n("nav_turn_left",j`<path d="M3 12a9 9 0 1 0 3-6.7M3 4v5h5" />`,{turn:-a})} ${n("nav_turn_right",j`<path d="M21 12a9 9 0 1 1-3-6.7M21 4v5h-5" />`,{turn:a})}
       ${n("nav_tilt_up",j`<path d="M6 15l6-6 6 6" />`,{tilt:-.12})} ${n("nav_tilt_down",j`<path d="M6 9l6 6 6-6" />`,{tilt:.12})}
       <button class="nf-nav-btn nf-nav-reset" title=${e("nav_reset")} aria-label=${e("nav_reset")} @click=${()=>this.viewer?.resetCamera()}>
         ${t(j`<path d="M3 11l9-8 9 8M5 10v10h14V10" />`)}
@@ -1730,7 +1730,7 @@ A plugin runs with the same rights as NextFloor in your browser. The file has be
       ${l.offline.length?f`<span class="nf-legend-none">${l.offline.slice(0,4).join(", ")}</span>`:g}
       ${o.length?g:f`<span class="nf-legend-none">${n("wifi_none")}</span>`}
     </div>`}skyColor(){let e=ai(this.theme,this.filledOwnLook),t=this._sky;return e.night[0].map((n,o)=>Math.round(n+(e.day[0][o]-n)*t))}render(){let e=this._sky,t=(i,s)=>`rgb(${i.map((a,l)=>Math.round(a+(s[l]-a)*e)).join(",")})`,n=ai(this.theme,this.filledOwnLook),o=`--nf-sky:${t(n.night[0],n.day[0])};--nf-ground:${t(n.night[1],n.day[1])}`+El(this.building?.settings.backdrop);return f`<div
-      class="nf-stage ${this.roomLabels?"":"nf-no-room-names"} ${this._low?"nf-low":""} ${this.panelOpen?"nf-panel-open":""} ${this._alerts.length?"nf-has-alerts":""} ${this.navShown()?this._walking?"nf-nav-walking":this.navStyle==="cube"?"nf-nav-on-cube":"nf-nav-on":""} ${this._narrowStage?"nf-narrow":""}"
+      class="nf-stage ${this.roomLabels?"":"nf-no-room-names"} ${this._low?"nf-low":""} ${this.panelOpen?"nf-panel-open":""} ${this._alerts.length?"nf-has-alerts":""} ${this.navShown()?this._walking||this.roomId?"nf-nav-walking":this.navStyle==="cube"?"nf-nav-on-cube":"nf-nav-on":""} ${this._narrowStage?"nf-narrow":""}"
       style=${o}
     >
       ${this._error?f`<p class="nf-error">${this._error}</p>`:g} ${this.renderTopLeft()} ${Ku(this.hass,this.roomId||this.panelOpen?[]:this._liveCards,(i,s,a,l)=>this.hass?.callService(i,s,{entity_id:a,...l}),{folded:this._houseFolded,toggle:()=>this.toggleHouseFold()})} ${this.clean?g:this.renderLegend()} ${this.renderMapCredit()}
