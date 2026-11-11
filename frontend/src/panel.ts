@@ -580,6 +580,7 @@ export class NextFloorPanel extends LitElement {
           .screenName=${p.screenName || null}
           .lockButton=${true}
           .walkButton=${true}
+          .navControls=${true}
           .travelButton=${true}
           .accent=${p.accent}
           .centralOpen=${p.menuOpen}
