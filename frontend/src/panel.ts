@@ -604,7 +604,7 @@ export class NextFloorPanel extends LitElement {
         ${room
           ? html`<nf-room-panel
             .building=${this.data.building ?? null}
-              class="nf-room-panel"
+              class="nf-room-panel" style="--nf-nav-top: 280px"
               .hass=${this.hass}
               .room=${room}
               .floor=${building.floors.find((f) => f.rooms.some((r) => r.id === this._roomId)) ?? null}
@@ -617,7 +617,7 @@ export class NextFloorPanel extends LitElement {
           : this._outside
             ? html`<nf-room-panel
             .building=${this.data.building ?? null}
-                class="nf-room-panel"
+                class="nf-room-panel" style="--nf-nav-top: 280px"
                 .hass=${this.hass}
                 .room=${null}
                 .outside=${this.outsideIds(building)}
